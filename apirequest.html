@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+    <div></div>
+    
+</body>
+<script>
+    const div=document.querySelector('div');
+    const requesturl= 'https://api.github.com/users/Yaminikanta-code';
+   const xhr= new XMLHttpRequest();
+   xhr.open('GET',requesturl);
+   xhr.onreadystatechange= function(){
+       console.log(xhr.readyState);
+       if(xhr.readyState==4 && xhr.status==200){
+            const data=JSON.parse(xhr.responseText);
+            //console.log(data);
+            //console.log(typeof data);
+            //console.log(data.login);
+            div.innerHTML=`${data.login} <br> <img src="${data.avatar_url}"> <br> followers ${data.followers} <br> following ${data.following}`;
+
+       }
+   }
+   console.log(xhr.readyState);
+   xhr.send();
+</script>
+</html>
